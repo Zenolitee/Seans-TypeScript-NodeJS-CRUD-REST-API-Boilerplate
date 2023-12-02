@@ -1,71 +1,162 @@
 {
     "openapi": "3.0.0",
     "info": {
-      "title": "Student API",
-      "version": "1.0.0",
-      "description": "API for managing student information"
+        "title": "Student API",
+        "version": "1.0.0",
+        "description": "API for managing student information"
     },
     "paths": {
-      "/students": {
-        "get": {
-          "summary": "Get a list of all students",
-          "responses": {
-            "200": {
-              "description": "Successful response",
-              "content": {
-                "application/json": {
-                  "example": [
-                    {
-                      "id": 1,
-                      "name": "Ben Dover",
-                      "age": 20
-                    },
-                    {
-                      "id": 2,
-                      "name": "Ivanne Bayer",
-                      "age": 22
+        "/students": {
+            "get": {
+                "summary": "Get a list of all students",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "id": 1,
+                                        "name": "Ben Dover",
+                                        "age": 20
+                                    },
+                                    {
+                                        "id": 2,
+                                        "name": "Down D. Stairs",
+                                        "age": 22
+                                    },
+                                    {
+                                        "id": 3,
+                                        "name": "Eric Panganiban",
+                                        "age": 21
+                                    }
+                                ]
+                            }
+                        }
                     }
-                  
-                  ]
                 }
-              }
-            }
-          }
-        }
-      },
-      "/students/{id}": {
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
             },
-            "description": "ID of the student"
-          }
-        ],
-        "get": {
-          "summary": "Get information about a specific student",
-          "responses": {
-            "200": {
-              "description": "Successful response",
-              "content": {
-                "application/json": {
-                  "example": {
-                    "id": 1,
-                    "name": "John Doe",
-                    "age": 20
-                  }
+            "post": {
+                "summary": "Create a new student",
+                "requestBody": {
+                    "description": "Student Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "name": "Student Name",
+                                "age": 21
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 3,
+                                    "name": "Student Name",
+                                    "age": 21
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
                 }
-              }
-            },
-            "404": {
-              "description": "Student not found"
             }
-          }
+        },
+        "/students/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "description": "ID of the student"
+                }
+            ],
+            "get": {
+                "summary": "Get information about a specific student",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 1,
+                                    "name": "Ben Dover",
+                                    "age": 20
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Student not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update information about a specific student",
+                "requestBody": {
+                    "description": "Student Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "name": "Updated Student",
+                                "age": 25
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 1,
+                                    "name": "Updated Student",
+                                    "age": 25
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Student not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a specific student",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 1,
+                                    "name": "Ben Dover",
+                                    "age": 20
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Student not found"
+                    }
+                }
+            }
         }
-      }
     }
   }
   
